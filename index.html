@@ -37,9 +37,9 @@
     const fullscreen = document.getElementById("fullscreen");
 
     const config = {
-      dataUrl: "Build/Web.data.unityweb",
-      frameworkUrl: "Build/Web.framework.js.unityweb",
-      codeUrl: "Build/Web.wasm.unityweb",
+      dataUrl: "Build/ead4ac33e49d672f559000a4632855a9.data.unityweb",
+      frameworkUrl: "Build/893bc66c3a27b68a9ba5c0e705c12ef6.framework.js.unityweb",
+      codeUrl: "Build/1d430384da0e4e404859b95bdebab6d5.wasm.unityweb",
       streamingAssetsUrl: "StreamingAssets",
       companyName: "Teste",
       productName: "Vigilia Carmesim",
@@ -49,11 +49,12 @@
 
     const fail = (message) => {
       loading.hidden = false;
-      statusText.textContent = "Não foi possível iniciar o jogo: " + message;
+      // Only the first line: the rest of a crash report is a stack trace that would fill the screen.
+      statusText.textContent = "Não foi possível iniciar o jogo: " + String(message).split("\n")[0] + " Recarregue a página com Ctrl+F5.";
     };
 
     const script = document.createElement("script");
-    script.src = "Build/Web.loader.js";
+    script.src = "Build/b23dd96997961653e2825455633aac82.loader.js";
     script.onerror = () => fail("arquivos do jogo não encontrados.");
     script.onload = () => {
       createUnityInstance(canvas, config, (progress) => {
